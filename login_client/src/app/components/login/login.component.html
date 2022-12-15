@@ -1,0 +1,31 @@
+<form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="login-form">
+    <label for="email">Email: </label>
+    <input class="form-control" id="email" type="text" formControlName="email">
+
+    <div *ngIf="emailControls?.status == 'INVALID' && (emailControls?.pristine || emailControls?.touched)" class="alert alert-danger">
+        <div *ngIf="emailControls?.errors?.['required']">
+            <p>An email is required.</p>
+        </div>
+        <div *ngIf="emailControls?.errors?.['email']">
+            <p>Must be an email.</p>
+        </div>
+    </div>
+
+    <label for="password">Password: </label>
+    <input class="form-control" id="password" type="password" formControlName="password">
+
+    <div *ngIf="passwordControls?.status == 'INVALID' && (passwordControls?.pristine || passwordControls?.touched)" class="alert alert-danger">
+        <div *ngIf="passwordControls?.errors?.['required']">
+            <p>A password is required.</p>
+        </div>
+        <div *ngIf="passwordControls?.errors?.['minlength']">
+            <p>The password is {{passwordControls?.errors?.['minlength']?.actualLength}} characters. It must be at least {{passwordControls?.errors?.['minlength']?.requiredLength}} characters long.</p>
+        </div>
+        <div *ngIf="passwordControls?.errors?.['maxlength']">
+            <p>The password is {{passwordControls?.errors?.['maxlength']?.actualLength}} characters. It must be at no shorter than {{passwordControls?.errors?.['maxlength']?.requiredLength}} characters long.</p>
+        </div>
+
+    </div>
+</form>
+
+<button type="submit" [disabled]="!loginForm.valid">Login</button>
