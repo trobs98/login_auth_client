@@ -29,10 +29,4 @@ export class LoginComponent implements OnInit {
   get passwordControls() {
     return this.loginForm.get('password');
   }
-
-  printLogin() {
-    console.log('form controls: ', this.loginForm);
-    console.log('passwordControls: ', this.passwordControls);
-  }
-
 }
