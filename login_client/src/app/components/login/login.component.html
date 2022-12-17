@@ -1,4 +1,4 @@
-<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+<form [formGroup]="loginForm" (ngSubmit)="login()">
 
     <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h3>
 
@@ -35,7 +35,7 @@
 
     <div class="d-flex justify-content-around align-items-center mb-4">
         <div class="col">
-            <a href="#!">Forgot password?</a>
+            <a routerLink="/forgot-password">Forgot password?</a>
         </div>
     </div>
     

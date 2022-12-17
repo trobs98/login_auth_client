@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -12,14 +13,12 @@ export class LoginComponent implements OnInit {
     password: ['', [Validators.minLength(8), Validators.maxLength(100), Validators.required]]
   });
 
-  constructor(private fb: FormBuilder) {
-  }
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthenticationService
+  ) {}
 
   ngOnInit(): void {
-  }
-
-  onLogin() {
-
   }
 
   get emailControls() {
@@ -28,5 +27,14 @@ export class LoginComponent implements OnInit {
 
   get passwordControls() {
     return this.loginForm.get('password');
+  }
+
+  login() {
+    let email: string = this.loginForm.get('email')?.value; 
+    let password: string = this.loginForm.get('password')?.value;
+
+    this.auth.login(email, password).subscribe(() => {
+      console.log('logged in');
+    });
   }
 }

@@ -12,6 +12,8 @@ import { SignupComponent } from './components/signup/signup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { AuthInterceptor } from './classes/auth-interceptor';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthenticationService } from './services/authentication.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { AuthInterceptor } from './classes/auth-interceptor';
     MatInputModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    CookieService,
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })

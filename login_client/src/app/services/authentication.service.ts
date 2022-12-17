@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+
+const AUTH_HTTP_OPTIONS = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+};
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +17,15 @@ export class AuthenticationService {
     private http: HttpClient
   ) {}
 
-  public Login (email: string, password: string) {
-    return this.http.post(environment.apiHost + '/login', {'email': email, 'password': password});
+  public login (email: string, password: string) {
+    return this.http.post(environment.apiHost + '/login', {'email': email, 'password': password}, AUTH_HTTP_OPTIONS);
   }
 
-  public Signup (email: string, password: string, name: string) {
-    return this.http.post(environment.apiHost + '/signup', {'email': email, 'password': password, 'name': name});
+  public signup (email: string, password: string, name: string) {
+    return this.http.post(environment.apiHost + '/signup', {'email': email, 'password': password, 'name': name}, AUTH_HTTP_OPTIONS);
   }
 
-  public ForgotPassword (email: string) {
-    return this.http.post(environment.apiHost + '/forgotpassword', {'email': email});
+  public forgotPassword (email: string) {
+    return this.http.post(environment.apiHost + '/forgotpassword', {'email': email}, AUTH_HTTP_OPTIONS);
   }
 }
