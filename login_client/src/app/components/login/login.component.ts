@@ -33,8 +33,8 @@ export class LoginComponent implements OnInit {
     let email: string = this.loginForm.get('email')?.value; 
     let password: string = this.loginForm.get('password')?.value;
 
-    this.auth.login(email, password).subscribe(() => {
-      console.log('logged in');
+    this.auth.login(email, password).subscribe((value) => {
+      console.log('value: ', value);
     });
   }
 }
