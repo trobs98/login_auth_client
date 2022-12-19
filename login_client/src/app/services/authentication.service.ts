@@ -16,14 +16,14 @@ export class AuthenticationService {
   ) {}
 
   public login (email: string, password: string) {
-    return this.http.post(environment.apiHost + '/login', {'email': email, 'password': password}, AUTH_HTTP_OPTIONS);
+    return this.http.post(environment.apiHost + '/session/login', {'email': email, 'password': password}, AUTH_HTTP_OPTIONS);
   }
 
   public signup (email: string, password: string, name: string) {
-    return this.http.post(environment.apiHost + '/signup', {'email': email, 'password': password, 'name': name}, AUTH_HTTP_OPTIONS);
+    return this.http.post(environment.apiHost + '/session/signup', {'email': email, 'password': password, 'name': name}, AUTH_HTTP_OPTIONS);
   }
 
   public forgotPassword (email: string) {
-    return this.http.post(environment.apiHost + '/forgotpassword', {'email': email}, AUTH_HTTP_OPTIONS);
+    return this.http.post(environment.apiHost + '/session/forgotpassword', {'email': email}, AUTH_HTTP_OPTIONS);
   }
 }
