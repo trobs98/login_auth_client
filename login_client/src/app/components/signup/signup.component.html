@@ -1,1 +1,67 @@
-<p>signup works!</p>
+<form [formGroup]="signupForm" (ngSubmit)="signup()">
+    <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Create an account!</h3>
+
+    <div class="form-outline mb-4">
+        <label class="form-label" for="firstName">First Name: </label>
+        <input class="form-control form-control-lg" id="firstName" type="text" formControlName="firstName">
+    
+        <div *ngIf="firstNameControls?.status == 'INVALID' && firstNameControls?.touched" class="alert alert-danger alert-dismissible">
+            <div *ngIf="firstNameControls?.errors?.['required']">
+                <p>A first name is required.</p>
+            </div>
+            <div *ngIf="firstNameControls?.errors?.['maxlength']">
+                <p>The first name is {{firstNameControls?.errors?.['maxlength']?.actualLength}} characters. It must be no shorter than {{firstNameControls?.errors?.['maxlength']?.requiredLength}} characters long.</p>
+            </div>
+        </div> 
+    </div>
+
+    <div class="form-outline mb-4">
+        <label class="form-label" for="lastName">Last Name: </label>
+        <input class="form-control form-control-lg" id="lastName" type="text" formControlName="lastName">
+    
+        <div *ngIf="lastNameControls?.status == 'INVALID' && lastNameControls?.touched" class="alert alert-danger alert-dismissible">
+            <div *ngIf="lastNameControls?.errors?.['required']">
+                <p>A last name is required.</p>
+            </div>
+            <div *ngIf="lastNameControls?.errors?.['maxlength']">
+                <p>The last name is {{lastNameControls?.errors?.['maxlength']?.actualLength}} characters. It must be no shorter than {{lastNameControls?.errors?.['maxlength']?.requiredLength}} characters long.</p>
+            </div>
+        </div> 
+    </div>
+
+    <div class="form-outline mb-4">
+        <label class="form-label" for="email">Email: </label>
+        <input class="form-control form-control-lg" id="email" type="text" formControlName="email">
+    
+        <div *ngIf="emailControls?.status == 'INVALID' && emailControls?.touched" class="alert alert-danger alert-dismissible">
+            <div *ngIf="emailControls?.errors?.['required']">
+                <p>An email is required.</p>
+            </div>
+            <div *ngIf="emailControls?.errors?.['email']">
+                <p>Must be an email.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-outline mb-4">
+        <label class="form-label" for="password">Password: </label>
+        <input class="form-control form-control-lg" id="password" type="password" formControlName="password">
+    
+        <div *ngIf="passwordControls?.status == 'INVALID' && passwordControls?.touched" class="alert alert-danger alert-dismissible">
+            <div *ngIf="passwordControls?.errors?.['required']">
+                <p>A password is required.</p>
+            </div>
+            <div *ngIf="passwordControls?.errors?.['minlength']">
+                <p>The password is {{passwordControls?.errors?.['minlength']?.actualLength}} characters. It must be at least {{passwordControls?.errors?.['minlength']?.requiredLength}} characters long.</p>
+            </div>
+            <div *ngIf="passwordControls?.errors?.['maxlength']">
+                <p>The password is {{passwordControls?.errors?.['maxlength']?.actualLength}} characters. It must be no shorter than {{passwordControls?.errors?.['maxlength']?.requiredLength}} characters long.</p>
+            </div>
+        </div> 
+    </div>
+
+    <div class="pt-1 mb-4">
+        <button class="btn btn-dark btn-lg btn-block w-100" type="submit" [disabled]="!signupForm.valid">Sign up</button>
+    </div>
+    <a routerLink="/login">Return to login</a>
+</form>

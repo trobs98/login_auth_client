@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpEvent, HttpResponse, HttpRequest, HttpHandler, HttpErrorResponse } from '@angular/common/http';
+import { HttpInterceptor, HttpEvent, HttpResponse, HttpRequest, HttpHandler, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
     intercept (req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        //let headers: HttpHeaders = new HttpHeaders({'Access-Control-Allow-Origin': environment.apiHost})
 
         // Allows cookie to be sent with any request
         let authReq = req.clone({
-            withCredentials: true
+            //withCredentials: true
         });
 
         return next.handle(authReq)
