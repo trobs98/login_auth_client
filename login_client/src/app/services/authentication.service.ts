@@ -2,12 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
-/*
-const AUTH_HTTP_OPTIONS = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': environment.apiHost})
-};
-*/
-
 @Injectable({
   providedIn: 'root'
 })

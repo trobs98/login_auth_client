@@ -20,7 +20,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   get emailControls() {
-    return this.forgotPasswordForm.get('email')?.value;
+    return this.forgotPasswordForm.get('email');
   }
 
   submitPasswordReset(): void {
