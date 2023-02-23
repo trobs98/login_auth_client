@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiHost: '/backend'
+  apiHost: '/backend',
+  userDataCookieName: 'USER_TOKEN'
 };
 
 /*
