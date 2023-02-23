@@ -2,10 +2,14 @@
 
     <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Login to your account</h3>
 
+    <div class="alert alert-danger alert-dismissible" [hidden]="!displayError">
+        <h1>{{ displayError }}</h1>
+    </div>
+
     <div class="form-outline mb-4">
-        <label class="form-label" for="email">Email: </label>
-        <input class="form-control form-control-lg" id="email" type="text" formControlName="email">
-    
+        <label class="form-label" for="email" [style.color]="emailControls?.status == 'INVALID' && emailControls?.touched ? 'red' : null">Email: </label>
+        <input class="form-control form-control-lg" id="email" type="text" formControlName="email" [style.border-color]="emailControls?.status == 'INVALID' && emailControls?.touched ? 'red' : null">
+        <br>
         <div *ngIf="emailControls?.status == 'INVALID' && emailControls?.touched" class="alert alert-danger alert-dismissible">
             <div *ngIf="emailControls?.errors?.['required']">
                 <p>An email is required.</p>
@@ -17,9 +21,9 @@
     </div>
 
     <div class="form-outline mb-4">
-        <label class="form-label" for="password">Password: </label>
-        <input class="form-control form-control-lg" id="password" type="password" formControlName="password">
-    
+        <label class="form-label" for="password" [style.color]="passwordControls?.status == 'INVALID' && passwordControls?.touched ? 'red' : null">Password: </label>
+        <input class="form-control form-control-lg" id="password" type="password" formControlName="password" [style.border-color]="passwordControls?.status == 'INVALID' && passwordControls?.touched ? 'red' : null">
+        <br>
         <div *ngIf="passwordControls?.status == 'INVALID' && passwordControls?.touched" class="alert alert-danger alert-dismissible">
             <div *ngIf="passwordControls?.errors?.['required']">
                 <p>A password is required.</p>

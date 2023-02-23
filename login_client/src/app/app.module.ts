@@ -14,13 +14,15 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { AuthInterceptor } from './classes/auth-interceptor';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthenticationService } from './services/authentication.service';
+import { HomepageComponent } from './components/homepage/homepage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,7 @@ import { AuthenticationService } from './services/authentication.service';
     MatInputModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    //{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     CookieService,
     AuthenticationService
   ],
